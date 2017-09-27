@@ -27,7 +27,7 @@ def get_links(query):
         return the_links
 
 def file_write(qry,u ,op, i):
-        i =  qry+ ".txt"
+        i =  "tmp_file/"+qry+ ".txt"
         file = open(i, "a", encoding='utf-8')
         file.write('\nData from: ' + u + '\n \n')
         file.write(op)

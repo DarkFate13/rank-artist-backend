@@ -11,7 +11,7 @@ def topic_model():
 	result = {}
 	list_of_documents = []
 	query = list(open('query.txt', 'r'))[0]
-	lines = list(open(query + '.txt', 'r'))
+	lines = list(open('tmp_file/' + query + '.txt', 'r'))
 	file_no = 0
 	f = open("sep/1.txt", 'w')
 	for line in (lines):

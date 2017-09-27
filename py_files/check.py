@@ -7,7 +7,7 @@ def lang_check():
 
 	tool = language_check.LanguageTool('en-US')
 
-	query = list(open('query.txt', 'r'))[0]
+	query = list(open('../query.txt', 'r'))[0]
 
 	doc_no = -1; result = list(); a = list(); to_JSON = list()
 

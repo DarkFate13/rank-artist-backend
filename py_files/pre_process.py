@@ -1,14 +1,9 @@
 import subprocess
 import optparse
 
-def pre_process_sum(mode):
-	query = list(open('query.txt', 'r'))[0]
-
-	lines = list(open(query + '.txt', 'r'))
-
+def add_line_regex(lines, f):
 	doc_no = -1
-
-	f = open('formatted_file', 'w')
+	
 	for line in lines:
 		if(len(line) < 10):
 			continue
@@ -21,16 +16,26 @@ def pre_process_sum(mode):
 		line = line + ' @' + format(doc_no, '03d') + '$'
 		
 		print (line, file = f)
-		
-	# print(doc_no)
 
 	print(len(lines), file = f)
+	
+	return doc_no
+	
+def pre_process_sum(mode):
+	query = list(open('../query.txt', 'r'))[0]
 
+	lines = list(open('../tmp_file/' + query + '.txt', 'r'))
+
+	f = open('../tmp_file/formatted_file', 'w+')
+	if(f.readline() != query):
+		print(query, file = f)
+		doc_no = add_line_regex(lines, f)
+		
 	if(mode == 0):
-		subprocess.call("./gen_luhn.sh")
+		subprocess.call("../scripts/gen_luhn.sh")
 	if(mode == 1):
-		subprocess.call("./text_sum.sh")
-
+		subprocess.call("../scripts/text_sum.sh")
+	
 	return doc_no
 	f.close() 
 
